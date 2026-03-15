@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: netguard-ids
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/netguard_ids
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+    open-in-view: false
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: netguard-ids-consumer
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.netguard.ids.dto.RawPacketDto
+
+server:
+  port: 8080
+
+# Optional: Python ML service URL (enable when ml_service.py is running)
+netguard:
+  ml-service-url: http://localhost:5000
+  ml-service-enabled: false
+  # Port scan rule: same IP touching > N ports in window (seconds)
+  port-scan-threshold: 20
+  port-scan-window-seconds: 5
