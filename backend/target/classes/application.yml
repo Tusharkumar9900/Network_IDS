@@ -3,9 +3,9 @@ spring:
     name: netguard-ids
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/netguard_ids
+    url: jdbc:postgresql://localhost:5432/ids_db
     username: postgres
-    password: postgres
+    password: admin
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 5
@@ -31,8 +31,11 @@ spring:
         spring.json.trusted.packages: "*"
         spring.json.value.default.type: com.netguard.ids.dto.RawPacketDto
 
+
+
+
 server:
-  port: 8080
+  port: 8081
 
 # Optional: Python ML service URL (enable when ml_service.py is running)
 netguard:

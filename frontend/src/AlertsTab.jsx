@@ -99,7 +99,7 @@ export function AlertsTab() {
     return (
       <div style={{ padding: 40, textAlign: "center", color: "#ff9f43", fontSize: 14 }}>
         {error}
-        <div style={{ marginTop: 8, fontSize: 12, color: "rgba(255,255,255,.4)" }}>Ensure backend is running at {import.meta.env.VITE_API_URL || "http://localhost:8080"}</div>
+        <div style={{ marginTop: 8, fontSize: 12, color: "rgba(255,255,255,.4)" }}>Ensure backend is running at {import.meta.env.VITE_API_URL || "http://localhost:8081"}</div>
       </div>
     );
   }

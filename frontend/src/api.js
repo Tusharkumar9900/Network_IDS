@@ -4,7 +4,7 @@
  */
 
 // Use relative URLs in dev so Vite proxy can forward to backend; override with VITE_API_URL if needed
-const API_BASE = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? "" : "http://localhost:8080");
+const API_BASE = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? "" : "http://localhost:8081");
 
 /** WebSocket base: same origin as API (e.g. ws from http) */
 function getWsBase() {
@@ -17,11 +17,11 @@ function getWsBase() {
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
     return `${protocol}//${window.location.host}`;
   }
-  return "ws://localhost:8080";
+  return "ws://localhost:8081";
 }
 
 async function request(path, options = {}) {
-  const base = API_BASE || (typeof window !== "undefined" ? window.location.origin : "http://localhost:8080");
+  const base = API_BASE || (typeof window !== "undefined" ? window.location.origin : "http://localhost:8081");
   const url = `${base}${path}`;
   const res = await fetch(url, {
     ...options,
